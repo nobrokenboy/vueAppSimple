@@ -1,11 +1,36 @@
 <template>
-    <nav class="app-nav">
-        <ul class="menu-lists">
-            <li><a href="">头条</a></li>
-            <li><a href="">专栏</a></li>
-            <li><a href="">问答</a></li>
-            <li><a href="">发现</a></li>
-            <li><a href="">我的</a></li>
+    <nav class="app-nav app-footer">
+        <ul class="menu-lists clearfix">
+            <li class="active">
+                <a>
+                    <i class="iconfont">&#xe63f;</i>
+                   <p>头条</p>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="iconfont">&#xe600;</i>
+                    <p>专栏</p>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="iconfont">&#xe7e3;</i>
+                    <p>问答</p>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="iconfont">&#xe66d;</i>
+                    <p>发现</p>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <i class="iconfont">&#xe629;</i>
+                    <p>我的</p>
+                </a>
+            </li>
         </ul>
     </nav>
 </template>
@@ -13,11 +38,5 @@
 
 </script>
 <style lang="scss" scoped>
-    .app-nav{
-    .menu-lists{
-    li{
-        float:left;
-    }
-    }
-    }
+
 </style>

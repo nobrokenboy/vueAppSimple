@@ -1,7 +1,7 @@
 <template>
     <nav class="app-header">
         <span>Paintings</span>
-        <a>搜索</a>
+        <a class="iconfont header-btn-search">&#xe608;</a>
     </nav>
 </template>
 <script>
