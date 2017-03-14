@@ -138,7 +138,7 @@ button[disabled]{
   }
 
 }
-.app-footer{
+/*.app-footer{
    position:fixed;
    left:0;
    bottom:0;
@@ -165,12 +165,13 @@ button[disabled]{
           font-size:20px;
         }
       }
-    }
-    li.active{
-      a{
-        color:#ff8000;
+      &.active{
+        a{
+          color:#ff8000;
+        }
       }
     }
 
+
   }
-}
+}*/
