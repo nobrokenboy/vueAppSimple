@@ -1,5 +1,7 @@
 <template>
-    <p>头条</p>
+    <div class="app-content">
+        <p>头条</p>
+    </div>
 </template>
 <script type="text/ecmascript-6">
 

@@ -91,7 +91,7 @@ gulp.task("webpack", function () {
 });
 //图片压缩
 gulp.task("imagemin",function(){
-    gulp.src(["./static/worksite/img/input/**/*.{jpg,gif,svg,png,ico}"])
+    gulp.src(["./src/assets/images/**/*.{jpg,gif,svg,png,ico}"])
         .pipe(cache(imagemin({
             optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
             progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
@@ -99,7 +99,7 @@ gulp.task("imagemin",function(){
             multipass: true,//类型：Boolean 默认：false 多次优化svg直到完全优化
             use: [pngquant()]
         })))
-        .pipe(gulp.dest("./static/worksite/img/output"))
+        .pipe(gulp.dest("./src/assets/images"))
         .pipe(reload({stream:true}));
 });
 //监听

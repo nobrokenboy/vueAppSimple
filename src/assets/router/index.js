@@ -8,6 +8,7 @@ import specialColumn from 'components/specialcolumn/specialColumnList.vue';
 import chat from 'components/chat/chat.vue';
 import discovery from 'components/discovery/discoveryList.vue';
 import user from 'components/user/userCenter';
+import login from 'components/user/login';
 Vue.use(Router);
 const routes=[
     {
@@ -36,11 +37,28 @@ const routes=[
         component:discovery
     },
     {
+        path:'/login',
+        name:'login',
+        component:login
+    },
+    {
         path:'/user',
         name:'user',
-        component:user
+        component:user,
+        beforeEnter: (to, from, next) => {
+            console.log("判断登录然后进入用户中心");
+            if(sessionStorage.getItem("accessToken")){
+                next();
+            }else{
+                //进入登录界面
+                next({
+                    path: '/login'
+                });
+            }
+        }
     }
 ];
-export  default new Router({
+const router=new Router({
     routes// （缩写）相当于 routes: routes
 });
+export default router;

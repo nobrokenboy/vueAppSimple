@@ -1,5 +1,7 @@
 <template>
-    <p>问答</p>
+    <div class="app-content">
+        <p>问答</p>
+    </div>
 </template>
 <script type="text/ecmascript-6">
 

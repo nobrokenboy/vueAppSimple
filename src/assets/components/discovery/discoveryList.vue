@@ -1,5 +1,8 @@
 <template>
-    <p>发现</p>
+    <div class="app-content">
+        <p>发现</p>
+    </div>
+
 </template>
 <script type="text/ecmascript-6">
 

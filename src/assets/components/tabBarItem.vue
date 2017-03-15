@@ -31,15 +31,6 @@
         methods:{
             goRouter(){
                 this.$parent.$emit('input',this.id);
-                if(this.$route.name==="user"){
-                   //先检测用户是否登录
-                    console.log(this.$router);
-                    if(this.isLogin){
-
-                    }else{
-                        //弹出登录界面
-                    }
-                }
             }
         }
     }
@@ -66,7 +57,7 @@
             }
             &.active{
                 a{
-                    color:#ff8000;
+                    color:$themeColor;
                 }
             }
         }
