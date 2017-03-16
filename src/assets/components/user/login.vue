@@ -1,8 +1,12 @@
 <template>
-    <transition name="custom-classes-transition"
-                enter-active-class="animated bounceOutLeft"
-                leave-active-class="animated bounceOutRight">
-        <div id="login">
+    <transition enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+        <div id="login" v-if="!isClose">
+            <!--关闭按钮-->
+            <div class="margin-bottom-10 clearfix">
+                <a class="fr" @click="closeLogin">
+                    <i class="iconfont f20">&#xe641;</i>
+                </a>
+            </div>
             <!--logo-->
             <div class="app-form-layer">
                 <figure class="app-login-img-wrapper">
@@ -33,7 +37,22 @@
     export default {
         data(){
             return {
-                isFocus:false
+                isFocus:false,
+                isClose:false
+            }
+        },
+        mounted(){
+            console.log(this.isClose);
+        },
+        methods:{
+            closeLogin(){
+                console.log("关闭登录，回去上一个状态!!!!!");
+                this.isClose=true;
+                const router = this.$router;
+                router.go({ path: '/topLine'});
+               /* router.redirect({
+                    '*':"/topLine"
+                });*/
             }
         }
     }
@@ -43,12 +62,15 @@
     @import "../../sass/animate.min.scss";
     @import "../../sass/common.scss";
     #login{
-        position:relative;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index:99;
         width:100%;
         height:100%;
         background:#fff;
         background:url(../../images/loginBg.png) no-repeat center center;
-        padding:60px 20px;
+        padding:30px 20px 60px;
         .app-login-img-wrapper{
             text-align:center;
         }
