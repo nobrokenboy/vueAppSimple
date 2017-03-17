@@ -3,21 +3,20 @@
         <!--脚部导航栏-->
             <!--<tab-bar-wrapper v-bind:value="select" v-on:input="value = $event.target.value">等效于下面的-->
             <tab-bar-wrapper v-model="select">
-                <tab-bar-item id="topLine">
-                    <i class="iconfont" slot="iconfont">&#xe63f;</i>
-                    头条
+                <tab-bar-item id="discovery">
+                    <i class="iconfont" slot="iconfont">&#xe66d;</i>
+                    发现
                 </tab-bar-item>
                 <tab-bar-item id="specialColumn">
                     <i class="iconfont" slot="iconfont">&#xe600;</i>
                     专栏
                 </tab-bar-item>
+                <tab-bar-item id="publish">
+                    <i class="iconfont f26" slot="iconfont">&#xe698;</i>
+                </tab-bar-item>
                 <tab-bar-item id="chat">
                     <i class="iconfont" slot="iconfont">&#xe7e3;</i>
                     问答
-                </tab-bar-item>
-                <tab-bar-item id="discovery">
-                    <i class="iconfont" slot="iconfont">&#xe66d;</i>
-                    发现
                 </tab-bar-item>
                 <tab-bar-item id="user">
                     <i class="iconfont" slot="iconfont">&#xe629;</i>
@@ -65,5 +64,5 @@
 </script>
 
 <style lang="scss">
-
+    @import "../sass/animate.min.scss";
 </style>

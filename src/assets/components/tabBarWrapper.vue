@@ -19,6 +19,7 @@
         width: 100%;
         height: $footerBarHeight;
         background: $footerBarBg;
+        border-top:1px solid rgba(1,1,1,0.2);
         .app-tab-nav-ul{
             height:100%;
         }

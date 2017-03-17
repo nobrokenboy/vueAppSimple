@@ -22,8 +22,8 @@
                         <input type="password" class="app-form-text" placeholder="Password" @keyup="isFocus=true"/>
                     </div>
                     <div class="clearfix margin-top-10">
-                        <a class="fl f14 font-white">Sign up</a>
-                        <a class="fr f12 font-white">forget password？</a>
+                        <a class="fl f14 font-white" @click="$router.push({path:'/register'})">Sign up</a>
+                        <a class="fr f12 font-white" @click="">forget password？</a>
                     </div>
                     <div class="app-form-control margin-top-10">
                         <a class="app-common-btn" :class="{'app-common-active-btn':isFocus}">Sign in</a>
@@ -49,10 +49,7 @@
                 console.log("关闭登录，回去上一个状态!!!!!");
                 this.isClose=true;
                 const router = this.$router;
-                router.go({ path: '/topLine'});
-               /* router.redirect({
-                    '*':"/topLine"
-                });*/
+                router.push({ path: sessionStorage.getItem("userBeforeRouterName")});
             }
         }
     }

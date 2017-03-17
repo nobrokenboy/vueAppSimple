@@ -9,5 +9,5 @@
 
 </script>
 <style lang="scss" scoped>
-
+    @import "../../sass/animate.min.scss";
 </style>

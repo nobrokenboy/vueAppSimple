@@ -3,23 +3,25 @@
  */
 import Vue from 'vue';
 import Router from 'vue-router';
-import topLine from 'components/topline/topLineList.vue';
+import publish from 'components/publish/publish.vue';
 import specialColumn from 'components/specialcolumn/specialColumnList.vue';
 import chat from 'components/chat/chat.vue';
 import discovery from 'components/discovery/discoveryList.vue';
 import user from 'components/user/userCenter';
 import login from 'components/user/login';
+import register from 'components/user/register';
+import findPassword from 'components/user/findpassword';
 Vue.use(Router);
 const routes=[
     {
         path:'/',
-        name:'topLine',
-        component:topLine
+        name:'discovery',
+        component:discovery
     },
     {
-        path:'/topLine',
-        name:'topLine',
-        component:topLine
+        path:'/discovery',
+        name:'discovery',
+        component:discovery
     },
     {
         path:'/specialColumn',
@@ -32,9 +34,9 @@ const routes=[
         component:chat
     },
     {
-        path:'/discovery',
-        name:'discovery',
-        component:discovery
+        path:'/publish',
+        name:'publish',
+        component:publish
     },
     {
         path:'/login',
@@ -42,11 +44,25 @@ const routes=[
         component:login
     },
     {
+        path:'/register',
+        name:'register',
+        component:register
+    },
+    {
+        path:'/findPassword',
+        name:'findPassword',
+        component:findPassword
+    },
+    {
         path:'/user',
         name:'user',
         component:user,
         beforeEnter: (to, from, next) => {
             console.log("判断登录然后进入用户中心");
+            console.log(to);
+            console.log(from.path);
+            //对进入用户中心前的路由做session记录
+            sessionStorage.setItem("userBeforeRouterName",from.path);
             if(sessionStorage.getItem("accessToken")){
                 next();
             }else{

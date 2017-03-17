@@ -18,6 +18,7 @@
         height:$headerBarHeight;
         line-height:$headerBarHeight;
         background:$headerBarBg;
+        box-shadow:1px 3px 3px rgba(1,1,1,0.2);
         text-align:center;
         .app-logo-text{
             color:#2b2b2b
