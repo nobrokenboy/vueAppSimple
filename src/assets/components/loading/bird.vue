@@ -1,4 +1,4 @@
-<template v-if="isLoading">
+<template>
     <div class="birdLoading">
         <svg width="200px" height="200px" viewBox="0 0 500 698" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-top:50px"  >
             <title>pioupiou</title>
@@ -38,13 +38,11 @@
         props:[],
         data () {
             return {
-                isLoading:true
+
             }
         },
         mounted(){
-            setTimeout(function(){
-                this.isLoading=false;
-            },666);
+
         }
     }
 </script>

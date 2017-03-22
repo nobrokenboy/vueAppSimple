@@ -15,11 +15,11 @@
                 <form >
                     <div class="app-form-control app-form-text-w">
                         <i class="iconfont app-form-icon">&#xe605;</i>
-                        <input type="text" class="app-form-text" placeholder="Username" @keyup="isFocus=true"/>
+                        <input type="text" class="app-form-text" placeholder="Username" @keyup="isFocus=true" v-focus />
                     </div>
                     <div class="app-form-control app-form-text-w">
                         <i class="iconfont app-form-icon">&#xe6d1;</i>
-                        <input type="password" class="app-form-text" placeholder="Password" @keyup="isFocus=true"/>
+                        <input type="password" class="app-form-text" placeholder="Password" @keyup="isFocus=true" />
                     </div>
                     <div class="clearfix margin-top-10">
                         <a class="fl f14 font-white" @click="$router.push({path:'/register'})">Sign up</a>
@@ -34,6 +34,7 @@
     </transition>
 </template>
 <script type="text/ecmascript-6">
+    import directive from 'directive/common_directive'
     export default {
         data(){
             return {

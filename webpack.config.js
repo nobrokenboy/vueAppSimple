@@ -44,7 +44,8 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       'components':path.join(__dirname,'./src/assets/components'),
       'pages':path.join(__dirname,'./src/assets/pages'),
-      'router':path.join(__dirname,'./src/assets/router')
+      'router':path.join(__dirname,'./src/assets/router'),
+      'directive':path.join(__dirname,'./src/assets/directive')
     }
   },
   devServer: {

@@ -11,6 +11,7 @@ import user from 'components/user/userCenter';
 import login from 'components/user/login';
 import register from 'components/user/register';
 import findPassword from 'components/user/findpassword';
+import search from 'components/search';
 Vue.use(Router);
 const routes=[
     {
@@ -52,6 +53,16 @@ const routes=[
         path:'/findPassword',
         name:'findPassword',
         component:findPassword
+    },
+    {
+        path:"/search",
+        name:"search",
+        component:search,
+        beforeEnter: (to, from, next) => {
+            //对进入用户中心前的路由做session记录
+            sessionStorage.setItem("userBeforeRouterName",from.path);
+            next();
+        }
     },
     {
         path:'/user',

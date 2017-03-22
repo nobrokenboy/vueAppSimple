@@ -1,5 +1,5 @@
 <template>
-    <transition enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+    <transition enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
         <div id="register">
             <!--关闭按钮-->
             <div class="margin-bottom-10 clearfix">
@@ -15,7 +15,7 @@
                 <form >
                     <div class="app-form-control app-form-text-w">
                         <i class="iconfont app-form-icon">&#xe605;</i>
-                        <input type="text" class="app-form-text" placeholder="Username" @keyup="isFocus=true"/>
+                        <input type="text" class="app-form-text" placeholder="Username" @keyup="isFocus=true" v-focus/>
                     </div>
                     <div class="app-form-control app-form-text-w">
                         <i class="iconfont app-form-icon">&#xe6d1;</i>
@@ -34,6 +34,7 @@
     </transition>
 </template>
 <script type="text/ecmascript-6">
+    import directive from 'directive/common_directive'
     export default {
         data(){
             return {

@@ -1,7 +1,7 @@
 <template>
     <nav class="app-header">
-        <span class="app-logo-text">Illustrator</span>
-        <a class="iconfont header-btn-search">&#xe608;</a>
+        <span class="app-logo-text">Illustration</span>
+        <a class="iconfont header-btn-search" @click="$router.push({path:'/search'})">&#xe608;</a>
     </nav>
 </template>
 <script>

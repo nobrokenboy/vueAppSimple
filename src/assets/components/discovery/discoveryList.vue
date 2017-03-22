@@ -1,8 +1,8 @@
 <template>
     <transition enter-active-class="animated fadeIn">
         <div class="app-content" id="appDiscovery">
-            <BirdLoading></BirdLoading>
-            <p>发现</p>
+            <BirdLoading v-if="isLoading" leave-active-class="animated fadeOut"></BirdLoading>
+            <p>O(∩_∩)O哈哈哈~</p>
         </div>
     </transition>
 </template>
@@ -17,7 +17,12 @@
             }
         },
         mounted(){
-
+            var self=this;
+            this.$nextTick(function () {
+                setTimeout(function(){
+                    self.isLoading=false;
+                 },2000);
+            });
         }
     }
 </script>
