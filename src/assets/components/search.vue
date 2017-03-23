@@ -86,26 +86,32 @@
             padding:10px;
             border-bottom:1px solid #ccc;
             .search-input{
+                display:table;
                 width:88%;
                 height:100%;
                 margin-right:2%;
                 padding:0 5px;
                 border:1px solid #ccc;
                 border-radius:3px;
+                font-size:0;
+                *word-spacing:-1px;/*兼容ie6,7*/
                 .input-text{
                     width:70%;
                     width:-webkit-calc(100% - 40px);
                     width:calc(100% - 40px);
                     height:100%;
                     padding-left:10px;
+                    font-size:14px;
                 }
                 .icon-search{
                     width:20px;
-                    height:100%;
+                    display: table-cell;
+                    vertical-align: middle;
                 }
                 .icon-delete{
                     width:20px;
-                    height:100%;
+                    display: table-cell;
+                    vertical-align: middle;
                 }
             }
             .cancel-btn{
