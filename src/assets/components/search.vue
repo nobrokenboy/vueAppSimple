@@ -15,11 +15,11 @@
                 </div>
                 <!--过滤项-->
                 <div class="filter-wrapper">
-                    <ul class="filter-items clearfix">
-                        <li class="active">用户名</li>
-                        <li>文章</li>
-                        <li>标签</li>
-                    </ul>
+                    <commonTabWrapper v-model="sendData.type">
+                        <commonTabBarItem v-for="(item,index) in tabSelectValues"  :key="item.index" :text="item.text" v-on:change="filterClick">
+                            <span>{{item.text}}</span>
+                        </commonTabBarItem>
+                    </commonTabWrapper>
                     <div class="filter-slider">
 
                     </div>
@@ -32,20 +32,41 @@
         </div>
     </transition>
 </template>
-<script type="text/ecmascript-6">
+<script  type="text/ecmascript-6">
+    import commonTabWrapper from 'components/tab/commonTabWrapper.vue';
+    import commonTabBarItem from 'components/tab/commonTab.vue';
     export default {
         props:[],
+        components:{commonTabWrapper,commonTabBarItem},
         data () {
             return {
                 isKeyUp:false,
                 sendData:{
                     keyword:"",
-                    filters:""
-                }
+                    type:""
+                },
+                tabSelectValues:[
+                    {
+                       index:0,
+                       text:"用户名"
+                    },
+                    {
+                       index:1,
+                       text: "文章"
+                    },
+                    {
+                        index:2,
+                        text:"标签"
+                    }
+                ]
             }
         },
-        mounted(){
+        computed:{
 
+        },
+        mounted(){
+            var self=this;
+            self.sendData.type=self.tabSelectValues[0].text;
 
         },
         methods:{
@@ -59,7 +80,13 @@
             clearClick(){
                 console.log("fff");
                 this.sendData.keyword="";
+            },
+            filterClick(){
+                var self=this;
+                console.log(self.sendData.type)
+                //触发请求事件
             }
+
         }
     }
 </script>
@@ -128,20 +155,7 @@
         .filter-wrapper{
             position:relative;
             width:100%;
-            .filter-items{
-                border-bottom:1px solid #ccc;
-                li{
-                    float:left;
-                    width:33.3%;
-                    height:50px;
-                    line-height:50px;
-                    text-align:center;
-                    &.active{
-                        color:$themeColor;
-                     }
-                }
 
-            }
             .filter-slider{
                 position:absolute;
                 left:0;

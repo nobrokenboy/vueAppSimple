@@ -10,7 +10,6 @@
                 </p>
             </router-link>
         </li>
-    </ul>
 </template>
 <script type="text/ecmascript-6">
     export default{
