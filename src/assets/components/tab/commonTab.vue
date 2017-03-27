@@ -35,9 +35,11 @@
 <style lang="scss" scoped>
     @import "../../sass/var.scss";
     .common-tab-select{
+        position:relative;
         float:left;
+        width:33.3%;
         height:100%;
-        padding:0 20px;
+        border-bottom:2px solid #fff;
         text-align:center;
         &.active{
             color:$themeColor;

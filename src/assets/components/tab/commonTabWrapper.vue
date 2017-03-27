@@ -17,8 +17,5 @@
         width:100%;
         height:40px;
         line-height:40px;
-        overflow-y:hidden;
-        overflow-x:scroll;
-        border-bottom:1px solid #ccc;
     }
 </style>

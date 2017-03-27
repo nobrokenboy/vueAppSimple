@@ -6,7 +6,7 @@
                     <div class="search-input fl">
                         <i class="iconfont icon-search">&#xe608;</i>
                         <input type="text" placeholder="请输入关键字" class="input-text"
-                               v-model="sendData.keyword" @keyup="isKeyUp=true"/>
+                               v-model="sendData.keyword" @keyup="isKeyUp=true,requestData()" v-focus/>
                         <i class="iconfont icon-delete" v-if="isKeyUp" @click="clearClick">&#xe623;</i>
                     </div>
                     <div class="cancel-btn fl">
@@ -17,17 +17,25 @@
                 <div class="filter-wrapper">
                     <commonTabWrapper v-model="sendData.type">
                         <commonTabBarItem v-for="(item,index) in tabSelectValues"  :key="item.index" :text="item.text" v-on:change="filterClick">
-                            <span>{{item.text}}</span>
+                            <a class="tab-style">{{item.text}}</a>
                         </commonTabBarItem>
                     </commonTabWrapper>
                     <div class="filter-slider">
-
                     </div>
                 </div>
             </div>
             <!--过滤结果-->
-            <div>
+            <div class="app-results">
+                <ul>
+                    <li>
+                        <a class="block">
+                            <div class="app-content-left">
 
+                            </div>
+                            <div class="app-content-right"></div>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </transition>
@@ -58,7 +66,8 @@
                         index:2,
                         text:"标签"
                     }
-                ]
+                ],
+                sliderBlock:document.getElementsByClassName("filter-slider")[0]
             }
         },
         computed:{
@@ -67,7 +76,7 @@
         mounted(){
             var self=this;
             self.sendData.type=self.tabSelectValues[0].text;
-
+            self.setSliderStyle(0);
         },
         methods:{
             closeLogin(){
@@ -83,8 +92,27 @@
             },
             filterClick(){
                 var self=this;
-                console.log(self.sendData.type)
-                //触发请求事件
+                console.log(self.sendData.type);
+
+                //获取对应的tab
+               var tabActiveIndex;
+               self.tabSelectValues.forEach((item,index) => {
+                    if(item.text==self.sendData.type){
+                        tabActiveIndex=index;
+                        return tabActiveIndex;
+                    }
+                });
+                self.setSliderStyle(tabActiveIndex);
+
+            },
+            requestData(){
+                console.log("hello");
+            },
+            setSliderStyle(index){
+                var self=this;
+                var initWidth=document.getElementsByClassName("common-tab-select")[0].offsetWidth;
+                document.getElementsByClassName("filter-slider")[0].style.width=initWidth+"px";
+                document.getElementsByClassName("filter-slider")[0].style.left=index*initWidth+"px";
             }
 
         }
@@ -155,14 +183,44 @@
         .filter-wrapper{
             position:relative;
             width:100%;
+            background:#FF3366;
+            .tab-style{
+                position:absolute;
+                display:inline-block;
+                border-radius:5px;
+                color:#fff;
+                &:active{
+                    &:after{
+                         width: 0;
+                         height: 0;
+                         left:60px;
+                         top: 25px;
+                         opacity: 1;
+                         transition-duration: 0s;
+                     }
+                 }
 
+                 &:after{
+                      content: "";
+                      display: block;
+                      position: absolute;
+                      left: -10px;
+                      top: -15px;
+                      width: 100px;
+                      height: 100px;
+                      background: rgba(255,255,255,0.8);
+                      border-radius: 50%;
+                      opacity:0;
+                      transition: all 1s;
+                  }
+            }
             .filter-slider{
                 position:absolute;
-                left:0;
                 bottom:0;
-                width:33.3%;
-                height:2px;
-                background:$themeColor;
+                height:3px;
+               /* background:$themeColor;*/
+                background:#fff;
+                transition:all .3s ease-in;
 
             }
         }
