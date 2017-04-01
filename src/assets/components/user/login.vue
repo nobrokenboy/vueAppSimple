@@ -68,6 +68,7 @@
         height:100%;
         background:#fff;
         background:url(../../images/loginBg.png) no-repeat center center;
+        background-size: cover;
         padding:30px 20px 60px;
         .app-login-img-wrapper{
             text-align:center;

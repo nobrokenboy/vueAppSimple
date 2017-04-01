@@ -17,7 +17,7 @@
                 <div class="filter-wrapper">
                     <commonTabWrapper v-model="sendData.type">
                         <commonTabBarItem v-for="(item,index) in tabSelectValues"  :key="item.index" :text="item.text" v-on:change="filterClick">
-                            <a class="tab-style">{{item.text}}</a>
+                            <a class="tab-style" @click="tabClick($event)">{{item.text}}</a>
                         </commonTabBarItem>
                     </commonTabWrapper>
                     <div class="filter-slider">
@@ -43,6 +43,7 @@
 <script  type="text/ecmascript-6">
     import commonTabWrapper from 'components/tab/commonTabWrapper.vue';
     import commonTabBarItem from 'components/tab/commonTab.vue';
+    import utils from 'utils/utils.js';
     export default {
         props:[],
         components:{commonTabWrapper,commonTabBarItem},
@@ -67,7 +68,7 @@
                         text:"标签"
                     }
                 ],
-                sliderBlock:document.getElementsByClassName("filter-slider")[0]
+                sliderBlock:document.getElementsByClassName("filter-slider")[0],
             }
         },
         computed:{
@@ -76,7 +77,48 @@
         mounted(){
             var self=this;
             self.sendData.type=self.tabSelectValues[0].text;
+            //设置滑块
             self.setSliderStyle(0);
+            //设置冲击波
+            var tablists=document.querySelectorAll(".common-tab-select");
+            Array.from(tablists).forEach((item,index) =>{
+                    let tabWidth=item.offsetWidth;
+                    let tabHeight=item.offsetHeight;
+                    console.log(tabWidth);
+                    console.log(tabHeight);
+                    //获取子元素的after元素
+                    let childElement=item.childNodes[0];
+                    let childClass="."+childElement.getAttribute("class");
+                    //伪元素宽高
+                    let afterElementWidth = window.getComputedStyle(childElement,"after").getPropertyValue('width').replace("px","");
+                    let afterElementHeight= window.getComputedStyle(childElement,"after").getPropertyValue('height').replace("px","");
+                    /*left以及right在ipad屏幕大上问题*/
+                    console.log(afterElementWidth);
+                    let insertLeft,insertTop;
+                    if(afterElementWidth>tabWidth){
+                        insertLeft='left:'+(-(afterElementWidth/2-tabWidth/2)+"px");
+                        insertTop='top:'+(-(afterElementHeight/2-tabHeight/2)+"px");
+                    }else if(tabHeight<afterElementWidth&&afterElementWidth<tabWidth){
+                        insertLeft='left:'+((tabWidth/2-afterElementWidth /2)+"px");
+                        insertTop='top:'+(-(afterElementHeight/2-tabHeight/2)+"px");
+                    }else if(afterElementWidth<tabHeight){
+                        insertLeft='left:'+((tabWidth/2-afterElementWidth/2)+"px");
+                        insertTop='top:'+((tabHeight/2-afterElementHeight/2)+"px");
+                    }else if(afterElementWidth==tabWidth){
+                        insertLeft='left:0';
+                        insertTop='top:'+(-(afterElementHeight/2-tabHeight/2)+"px");
+                    }else if(afterElementWidth==tabHeight){
+                        insertLeft='left:'+((tabWidth/2-afterElementWidth/2)+"px");
+                        insertTop='top:0';
+                    }
+                    document.styleSheets[0].addRule(childClass+":after",insertLeft);
+                    document.styleSheets[0].addRule(childClass+":after",insertTop);
+                    console.log(insertLeft);
+                    console.log(insertTop);
+
+
+            });
+
         },
         methods:{
             closeLogin(){
@@ -106,13 +148,30 @@
 
             },
             requestData(){
-                console.log("hello");
             },
             setSliderStyle(index){
                 var self=this;
                 var initWidth=document.getElementsByClassName("common-tab-select")[0].offsetWidth;
                 document.getElementsByClassName("filter-slider")[0].style.width=initWidth+"px";
                 document.getElementsByClassName("filter-slider")[0].style.left=index*initWidth+"px";
+            },
+            tabClick(event){
+                var self=this;
+                var target=event.target;
+                var childClass=target.getAttribute("class");
+                var waveCenterObjWidth=target.offsetWidth/2+"px";
+                var waveCenterObjHeight=target.offsetHeight/2+"px";
+                var insertLeft='left:'+waveCenterObjWidth;
+                var insertTop='top:'+waveCenterObjHeight;
+                /*debugger*/
+                document.styleSheets[0].addRule(childClass+":after",insertLeft);
+                document.styleSheets[0].addRule(childClass+":after",insertTop);
+                console.log(insertLeft);
+                console.log(insertTop);
+                var afterElementLeft = window.getComputedStyle(target,"after").getPropertyValue('left');
+                var afterElementTop = window.getComputedStyle(target,"after").getPropertyValue('top');
+                console.log(afterElementLeft);
+                console.log(afterElementTop);
             }
 
         }
@@ -185,18 +244,19 @@
             width:100%;
             background:#FF3366;
             .tab-style{
-                position:absolute;
-                display:inline-block;
+                position:relative;
+                display:block;
                 border-radius:5px;
                 color:#fff;
                 &:active{
                     &:after{
                          width: 0;
                          height: 0;
-                         left:60px;
-                         top: 25px;
+                         left:69px;
+                         top:20px;
                          opacity: 1;
                          transition-duration: 0s;
+                         color:red;
                      }
                  }
 
@@ -204,10 +264,8 @@
                       content: "";
                       display: block;
                       position: absolute;
-                      left: -10px;
-                      top: -15px;
-                      width: 100px;
-                      height: 100px;
+                      width:120px;
+                      height:120px;
                       background: rgba(255,255,255,0.8);
                       border-radius: 50%;
                       opacity:0;

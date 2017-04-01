@@ -45,7 +45,8 @@ module.exports = {
       'components':path.join(__dirname,'./src/assets/components'),
       'pages':path.join(__dirname,'./src/assets/pages'),
       'router':path.join(__dirname,'./src/assets/router'),
-      'directive':path.join(__dirname,'./src/assets/directive')
+      'directive':path.join(__dirname,'./src/assets/directive'),
+      'utils':path.join(__dirname,'./src/assets/utils')
     }
   },
   devServer: {
